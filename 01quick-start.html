@@ -7,6 +7,38 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="app">
+        <!-- 雙括弧是模板語言 -->
+        <h1>{{ typeof count }}</h1> 
+        <hr>
+        <p>{{name}}</p>
+        <hr>
+        <p>{{kind}}</p>
+        <hr>
+        <p>{{boolean?'你好':'不好'}}</p> <!--?判斷true or flase  boolean? true:flase-->
+        <hr>
+        <p>{{array.length}}</p>
+        <hr>
+        <h1>{{who}}去吃{{food}}</h1>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // console.log(Vue)
+        // 新增一個應用application>建立Vue實體（instance)
+        Vue.createApp({
+            data(){
+                return{
+                    count:1,
+                    name:'👺',
+                    kind:'🤖',
+                    boolean:true,
+                    array:['😝','😂','🤔'],
+                    food:'💩',
+                    who:'🫵',
+
+                }
+            }
+        }).mount('#app')//掛載（mount）在網頁節點上的（id="app"）
+    </script>
 </body>
 </html>

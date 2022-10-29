@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <h1>{{count}}</h1> 
+       
+    </div>
+    <div id="app1">
+        <h1>{{count}}</h1> 
+     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+		//寫法一
+    const vm1 = new Vue({
+        el:"#app",
+        data:{
+            count:"🤢"
+        }
+    })
+		//寫法二
+    const vm2 = new Vue({
+        data:{
+            count:"🥶"
+        }
+    })
+		vm2.$mount("#app1")
+    </script>
+    <!-- <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // console.log(Vue)
+        Vue.createApp({
+            data(){
+                return{
+                    count:1,
+                  
+
+                }
+            }
+        }).mount('#app')
+    </script> -->
+</body>
+</html>
