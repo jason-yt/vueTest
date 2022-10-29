@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title{
+            display: flex;
+            align-items: center;
+        }
+        #app{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            border: 0px;
+            background-color: #fa0;
+            border-radius: 5px;
+            height: 30px;
+            color: #fff;
+            /* padding: 20px 40px; */
+        }
+        .item>button:first-child{
+            border-radius: 5px 0px 0px 5px;
+        }
+        .item>button:last-child{
+            border-radius: 0px 5px 5px 0px;
+        }
+        button:focus{
+            outline: transparent;
+        }
+        input{
+            border: 0px;
+            background-color:rgb(255, 234, 188,.5);
+            height: 30px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="title">
+            <h2 data-attr="1">{{ title }}</h2>
+            <p>${{ money }}</p>
+        </div>
+        <div class="item">
+            <button @click="reduceCount">-</button>
+            <input type="text" v-model="count">
+            <button @click="addCount">+</button>
+        </div>
+        <button>add</button>
+        <p>總計＄{{total}}</p>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    title:'芭樂',
+                    money:100,
+                    count:1,
+                    total:0,
+                }
+            },
+            methods:{
+                addCount(){
+                    this.count+=1
+                    // this.total=this.count*this.money
+                    this.sumTotal()
+                },
+                reduceCount(){
+                    if(this.count<=0)return
+                    this.count-=1
+                    this.sumTotal()
+                },
+                sumTotal(){
+                    this.total= this.count*this.money
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

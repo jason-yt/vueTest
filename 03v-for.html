@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title{
+            display: flex;
+            align-items: center;
+        }
+        #app{
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(207, 169, 248, 0.5);
+        }
+        button{
+            border: 0px;
+            background-color: #fa0;
+            border-radius: 5px;
+            height: 30px;
+            color: #fff;
+            /* padding: 20px 40px; */
+        }
+        .item>button:first-child{
+            border-radius: 5px 0px 0px 5px;
+        }
+        .item>button:last-child{
+            border-radius: 0px 5px 5px 0px;
+        }
+        button:focus{
+            outline: transparent;
+        }
+        input{
+            border: 0px;
+            background-color:rgb(255, 234, 188,.5);
+            height: 30px;
+            margin-bottom: 20px;
+        }
+        img{
+            width: 20%;
+        }
+        .list{
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           /* background-color: rgb(255, 203, 203); */
+        }
+        .pagination>button{
+            margin: 3px;
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <div class="title">
+            <h2 data-attr="1">{{ title }}</h2>
+            <p>${{ money }}</p>
+        </div>
+        <div class="item">
+            <button @click="reduceCount">-</button>
+            <input type="text" v-model="count">
+            <button @click="addCount">+</button>
+        </div>
+        <p>總計＄{{total}}</p> -->
+        <!-- {{product[0]}} -->
+        <!-- 變數 in 物件 -->
+        <div class="list" v-for="(item, index) in product" :key="item.id">
+            <p>{{item.title}}</p>
+            <img :src="item.image" alt="">
+            <p>{{item.price}}</p>
+            <div class="item">
+                <button @click="reduceCount(index)">-</button>
+                <input type="number" v-model="count[index]" min="0">
+                <button @click="addCount(index)">+</button>
+            </div>
+           
+        </div>
+        <p>總計＄{{total}}</p>
+        <div class="pagination">
+            <button v-for="page in 10" :key="page">{{page}}</button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    product:[
+                    {
+                        "id": 1,
+                        "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                        "price": 109.95,
+                        "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+                        "category": "men's clothing",
+                        "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                        "rating": {
+                        "rate": 3.9,
+                        "count": 120
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "title": "Mens Casual Premium Slim Fit T-Shirts ",
+                        "price": 22.3,
+                        "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+                        "category": "men's clothing",
+                        "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+                        "rating": {
+                        "rate": 4.1,
+                        "count": 259
+                        }
+                    }],
+                    title:'芭樂',
+                    money:100,
+                    count:[0,0],
+                    total:0,
+                    page:1,
+                }
+            },
+            mounted(){
+                // this.product.map(item=>{
+                //     this.cont.push(0)
+                // })
+                // 初始化商品數量
+                for( const item in this.product){
+                    this.cont.push(0)
+                }
+            },
+            methods:{
+                addCount(index){
+                //    console.log(index)
+                    //item:商品數量
+                    //index:陣列位置
+                    this.count[index]+=1
+                    // this.total=this.count*this.money
+                    this.sumTotal()
+                },
+                reduceCount(index){
+                        //item:商品數量
+                        //index:陣列位置
+                    if(this.count[index]<=0)return
+                    this.count[index]-=1
+                    this.sumTotal()
+                },
+                sumTotal(){
+                        this.total=0
+                        for(countIndex in this.count){
+                        this.total+= this.count[countIndex]*this.product[countIndex]['price']
+                        }
+                        this.total=parseInt(this.total)
+                        // this.count.map((item,index)=>{
+                        //item:商品數量
+                        //index:商品資訊陣列位置
+                        //item.price:商品陣列位置
+                        // this.product[index]:商品資訊
+                        // this.product[index][money]:商品價錢
+                        // console.log(item);
+                        // console.log(index+':'+item);
+                    // })
+                   
+                    
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
