@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .calc{
+            width: 300px;
+            margin: auto;
+            background-color: rgb(241, 241, 241);
+            border-radius: 5px;
+            padding: 10px 0px;
+        }
+        button{
+            width: 90px;
+            display:inline-block;
+            
+            height: 25px;
+
+        }
+        input{
+            width: 270px;
+            margin: auto;
+            height: 25px;
+            display: block;
+            margin: auto; 
+        }
+        .calc-btn{
+            margin: auto;
+            width: 276px;
+            
+        }
+  
+        .num-btn{
+            margin: 5px 0px; 
+            margin-right: 3px;
+            
+        }
+        .num-btn:nth-child(3n){
+            margin-right: 0px;
+        }
+        .num-btn:last-child{
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="calc">
+            <input type="text" id="#ans" v-model="keyin">
+            <div class="calc-btn">
+                <button type="button" v-for='num in 9'class="num-btn" @click="numBtn">
+                    {{num}}
+                </button>
+                <button type="button" class="num-btn" id="nac" @click="nAc">
+                    {{nac}}
+                </button>
+                <button type="button" class="num-btn" id="num0" @click="numBtn">
+                    {{num0}}
+                </button>
+                <button type="button" class="num-btn" id="ndot" @click="nDot">
+                    {{ndot}}
+                </button>
+
+                <button @click="reduce" class="num-btn" >－</button>
+                <button @click="add" class="num-btn" >＋</button>
+                <button @click="calc" class="num-btn" >＝</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    keyin:'',
+                    result:'',
+                    num0:0,
+                    nac:'AC',
+                    ndot:'.',
+                    num:true,
+                }
+            },
+            methods:{
+                numBtn(num){
+                    if(num=ture){
+                        this.keyin+=num.number
+                    }
+                    
+                
+                },
+                nAc(){
+                    this.keyin='0'
+                },
+                nDot(){
+                    if (this.keyin.includes(".")) 
+                    return
+                    this.keyin+='.'
+                },
+
+                add(){
+
+                },
+                reduce(){
+
+                },
+                calc(){
+
+                },
+            }
+        }).mount('#app')
+      
+    </script>
+</body>
+</html>

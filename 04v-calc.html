@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        /* .title{
+            display: flex;
+            align-items: center;
+        }
+        #app{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            border: 0px;
+            background-color: #fa0;
+            border-radius: 5px;
+            height: 30px;
+            color: #fff;
+
+        }
+        .item>button:first-child{
+            border-radius: 5px 0px 0px 5px;
+        }
+        .item>button:last-child{
+            border-radius: 0px 5px 5px 0px;
+        }
+        button:focus{
+            outline: transparent;
+        }
+        input{
+            border: 0px;
+            background-color:rgb(255, 234, 188,.5);
+            height: 30px;
+            margin-bottom: 20px;
+        } */
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button 
+            v-for="num in 11" 
+        >
+            {{num}}
+        </button>
+        <button>
+            0
+        </button>
+        {{keyin}}
+        <!-- <button @click="reduce">-</button>
+        <button @click="add">+</button>
+        <button @click="calc">=</button>
+        <button @click="clean">C</button>
+        <div class="">
+            {{step}}
+        </div>
+        <p>{{result}}</p> -->
+    </div>
+    
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    step:'',
+                    keyin:0,
+                    result:100,
+                }
+            },
+            methods:{
+                add(){
+                    this.result+=this.keyin
+                },
+                reduce(){
+                    this.result-=1
+                },
+                calc(){
+
+                },
+                clear(){
+                    this.result=0
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

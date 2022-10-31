@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .calc{
+            width: 300px;
+            margin: auto;
+            background-color: rgb(241, 241, 241);
+            border-radius: 5px;
+            padding: 10px 0px;
+        }
+        button{
+            width: 90px;
+            display:inline-block;
+            
+            height: 25px;
+
+        }
+        input{
+            width: 270px;
+            margin: auto;
+            height: 25px;
+            display: block;
+            margin: auto; 
+        }
+        .calc-btn{
+            margin: auto;
+            width: 276px;
+            
+        }
+  
+        .num-btn{
+            margin: 5px 0px; 
+            margin-right: 3px;
+            
+        }
+        .num-btn:nth-child(3n){
+            margin-right: 0px;
+        }
+        .num-btn:last-child{
+            margin:auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="calc">
+            <input type="text" id="#ans" v-model="keyin">
+            <div class="calc-btn">
+                <button type="button" class="num-btn" id="num1" @click="n01">
+                    {{num1}}
+                </button>
+                <button type="button" class="num-btn" id="num2" @click="n02">
+                    {{num2}}
+                </button>
+                <button type="button" class="num-btn" id="num3" @click="n03">
+                    {{num3}}
+                </button>
+                <button type="button" class="num-btn" id="num4" @click="n04">
+                    {{num4}}
+                </button>
+                <button type="button" class="num-btn" id="num5" @click="n05">
+                    {{num5}}
+                </button>
+                <button type="button" class="num-btn" id="num6" @click="n06">
+                    {{num6}}
+                </button>
+                <button type="button" class="num-btn" id="num7" @click="n07">
+                    {{num7}}
+                </button>
+                <button type="button" class="num-btn" id="num8" @click="n08">
+                    {{num8}}
+                </button>
+                <button type="button" class="num-btn" id="num9" @click="n09">
+                    {{num9}}
+                </button>
+                <button type="button" class="num-btn" id="nac" @click="nAc">
+                    {{nac}}
+                </button>
+                <button type="button" class="num-btn" id="num0" @click="n00">
+                    {{num0}}
+                </button>
+                <button type="button" class="num-btn" id="ndot" @click="nDot">
+                    {{ndot}}
+                </button>
+
+                <button @click="reduce" class="num-btn" >－</button>
+                <button @click="add" class="num-btn" >＋</button>
+                <button @click="calc" class="num-btn" >＝</button>
+            </div>
+         
+        </div>
+<!--        
+        <button @click="reduce">-</button>
+        <button @click="add">+</button>
+        <button @click="calc">=</button>
+        <button @click="clean">C</button>
+        <div class="">
+            {{step}}
+        </div>
+        <p>{{result}}</p> -->
+    </div>
+    
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    step:'',
+                    keyin:'',
+                    result:100,
+                    num1:1,
+                    num2:2,
+                    num3:3,
+                    num4:4,
+                    num5:5,
+                    num6:6,
+                    num7:7,
+                    num8:8,
+                    num9:9,
+                    num0:0,
+                    nac:'AC',
+                    ndot:'.',
+                    
+                }
+            },
+            methods:{
+                n01(){
+                    this.keyin+='1'
+                },
+                n02(){
+                    this.keyin+='2'
+                },
+                n03(){
+                    this.keyin+='3'
+                },
+                n04(){
+                    this.keyin+='4'
+                },
+                n05(){
+                    this.keyin+='5'
+                },
+                n06(){
+                    this.keyin+='6'
+                },
+                n07(){
+                    this.keyin+='7'
+                },
+
+                n08(){
+                    this.keyin+='8'
+                },
+                n09(){
+                    this.keyin+='9'
+                },
+                n00(){
+                    this.keyin+='0'
+                },
+                nAc(){
+                    this.keyin='0'
+                },
+                nDot(){
+                    if (this.keyin.includes(".")) 
+                    return
+                    this.keyin+='.'
+                },
+
+                add(){
+
+                },
+                reduce(){
+
+                },
+                calc(){
+
+                },
+            }
+        }).mount('#app')
+      
+    </script>
+</body>
+</html>
