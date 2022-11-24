@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+<body>
+    <div id="app">
+        <section id="section1" ref="section1">
+            1
+            <button @click="scrollDown">👇</button>
+        </section>
+        <section id="section2" ref="section2">
+            2
+            <button @click="scrollDown2">👇</button>
+        </section>
+        <section id="section3" ref="section3">
+            3
+            <button @click="scrollTo">👆</button>
+        </section>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                   
+                }
+            },
+            methods:{
+                scrollTo(){
+                   window.scrollTo({
+                    top:0,
+                    behavior:"smooth"   
+                   }) 
+                },
+                scrollDown(){
+                    const box = this.$refs.section2
+                    window.scrollTo({
+                        top: box.offsetTop,
+                        behavior:"smooth"   
+                   }) 
+                },
+                scrollDown2(){
+                    const box2 = this.$refs.section3
+                    window.scrollTo({
+                        top:box2.offsetTop,
+                        behavior:"smooth"   
+                   }) 
+                }
+            },
+           
+        }).mount("#app")
+    </script>
+</body>
+</html>
+<style>
+    section{
+        height: 100vh;
+        font-size: 15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    button{
+        width: fit-content;
+        margin: auto;
+        background-color: transparent;
+        border: transparent;
+        font-size: 3rem;
+
+    }
+    #section1{
+        background-color: aquamarine;
+    }
+    #section2{
+        background-color: yellowgreen
+    }
+    #section3{
+        background-color: goldenrod;
+    }
+</style>

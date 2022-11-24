@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .toDoList{
+            width: 80%;
+            margin: auto;
+            background-color: #fa0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div class="toDoList">
+            <h1>To Do List</h1>
+
+            <div class="list">
+                <p v-for="(item,index) in todos">
+                    {{index+1}}.{{item}}
+                    <button id="del" @click="removeTodo(index)">{{del}}</button>
+                </p>
+            </div>
+          
+            <div>
+                <input type="text" @keyup.enter="addTodo()" v-model="inputValue"/>
+            </div>
+
+            <div v-if="todos.length !=0">
+                Total:{{todos.lenght}} todo
+                <button @click="clearAll">Clear All</button>
+            </div>
+        </div>
+       
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            el: '#app',
+            data(){
+                return {
+                    inputValue: '',
+                    del:'❌',
+                    todos[],
+                }
+            },
+            methods:{
+                addTodo: function () {
+                    // 增加 todo 的方法
+                    this.todos.push(this.inputValue); // 使用陣列方法push()把輸入值放到陣列裡
+                    console.log(this.todos);
+                    this.inputValue = ''; // 1把輸入框清空
+                },
+                removeTodo: function (index) {
+                    // 刪除 todo
+                    this.todos.splice(index, 1); // 使用陣列方法splice(指定的index開始，刪除一筆)，依照抓到的 index 刪除
+                },
+                clearAll: function () {
+                    // 清除所有
+                    this.todos = []; // 把儲存陣列的 todos 用空陣列賦值清空
+                },
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>

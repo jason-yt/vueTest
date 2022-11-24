@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .toDoList{
+            width: 50%;
+            margin: auto;
+            background-color: rgb(160, 206, 251);
+            text-align: center;
+        }
+        span{
+            font-size: 22px;
+            font-weight: 700;
+            color: #000;
+        }
+        .total p{
+            font-size: 14px;
+            font-weight: 500;
+            color: rgb(10, 60, 131);
+        }
+        .clearall p{
+            font-size: 12px;
+            font-weight: 400;
+            color:red;
+            padding-bottom:20px ;
+        }
+        button{
+            cursor: pointer;
+            border: 0px transparent;
+            background-color: transparent;
+            font-size: 14px;
+        }
+        input{
+            padding:5px 20px;
+            border-radius: 50px;
+            background-color: #eee;
+            border: 0px transparent;
+        }
+        input:focus{
+            outline: 0px;
+        }
+        label{
+            position: relative;
+        }
+        #sub{
+            position: absolute;
+            right: 10px;
+        }
+        .clearall button{
+            background-color: red;
+            padding: 5px;
+            margin: 10px;
+            border-radius: 50px;
+            width: 30px;
+            height: 30px;
+            box-shadow: -2px -2px 3px 3px rgba(26, 26, 26, 0.3) inset;
+            line-height: 0;
+
+        }
+        .no{
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    
+
+    <div id="app">
+        <div class="toDoList">
+            <h1>To Do List</h1>
+            <div class="list">
+                <p v-for="(item,index) in todos">
+                    <span class="no">NO.{{index+1}}</span> 👉 {{item}}
+                    <button @click="removeTodo(index)">{{del}}</button>
+                </p>
+            </div>
+          
+            <label>
+                <input type="text"  v-model="toDo">
+                <button id="sub" @click="addtoDo">⬆️</button>
+            </label>
+
+            <div class="total">
+                <p v-if="todos.length !=0">
+                    剩餘: <span>{{todos.length}}</span>項 代辦事項
+                </p>
+                
+            </div>
+            <div class="clearall">
+                <button @click="clearAll">⚠️</button>
+                <p>點擊後果自行負責</p>
+            </div> 
+        </div>
+       
+    </div>
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+        createApp({
+          data() {
+            return {
+                
+                del:'❎',
+                toDo:'',
+                todos:[],
+            }
+          },
+          methods:{
+            addtoDo:function(){
+                this.todos.push(this.toDo);
+                // console.log(this.inputValue)
+                this.toDo='';
+            },
+            removeTodo:function(index){
+                this.todos.splice(index,1);
+            },
+            clearAll:function(){
+                this.todos=[];
+            },
+          }
+        }).mount('#app')
+      </script>
+
+   
+ 
+</body>
+</html>
