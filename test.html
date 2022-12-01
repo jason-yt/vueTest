@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+	.textLoop-animate {
+		white-space: nowrap;  
+		overflow: hidden;
+	}
+	.logo-texts{
+		animation: textLoop 10s linear infinite;
+		font-size: 48px;
+		color: black;
+		font-weight: 900;
+		font-style: italic;
+		white-space: nowrap;  
+		overflow: hidden;
+		transform: translate3d(0, 0, 0);
+	}
+	@keyframes textLoop {
+		0% {
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0)
+		}
+		100% {
+		     -webkit-transform: translate3d(-100%, 0, 0);
+			transform: translate3d(-100%, 0, 0)
+		}
+}
+    </style>
+</head>
+<body>
+    <span class="logo-texts"  v-for="num in 9" :key="num">
+        logoText
+    </span>
+</body>
+</html>
